@@ -9,8 +9,8 @@ public class Faculty {
     private List<Student> students;
 
     public Faculty(String[] values) {
-        this.name = values[0].toUpperCase();
-        this.capacity = Integer.parseInt(values[1]);
+        this.name = values[0].trim().toUpperCase();
+        this.capacity = Integer.parseInt(values[1].trim());
         students = new ArrayList<Student>();
     }
 

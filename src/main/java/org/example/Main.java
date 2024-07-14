@@ -6,12 +6,14 @@ import java.util.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
-    static String csvFilePathToStudentsDataset = "C:\\Users\\ILIA\\IdeaProjects\\project\\src\\main\\resources\\dataset.csv";
+    static String csvFilePathToStudentsDataset = "C:\\Users\\ILIA\\IdeaProjects\\project\\src\\main\\resources\\full_sstu_dataset.csv";
     static String csvFilePathToFacultiesDataset = "C:\\Users\\ILIA\\IdeaProjects\\project\\src\\main\\resources\\FacultyDataset.csv";
+
+    static boolean shouldFilterByDocumentStatus = true;
 
     public static void main(String[] args) {
         List<Student> students = DatasetParser.getStudentsFromCSV(csvFilePathToStudentsDataset);
-        students = students.stream().filter(student -> !"Копия".equals(student.getDocumentStatus())).toList();
+        students = StudentUtils.validateStudents(students, shouldFilterByDocumentStatus);
 
         List<Faculty> faculties = DatasetParser.getFacultiesFromCSV(csvFilePathToFacultiesDataset);
         Map<String, Faculty> facultiesMap = new HashMap<>();
